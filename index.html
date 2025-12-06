@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 
+        BSE Specialisation Advisor - Landing Page
+        Author: Winebald Banituze
+        Description: An interactive tool to help BSE students discover their ideal specialisation
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover your ideal BSE specialisation through an interactive neural pathway assessment">
+    <title>PathFinder | BSE Specialisation Advisor</title>
+    
+    <!-- Link to external stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="landing-page">
+    <!-- 
+        Canvas element for animated particle/constellation background
+        Creates a dynamic neural network visualization
+    -->
+    <canvas id="neural-canvas"></canvas>
+
+    <!-- 
+        Navigation bar - fixed position, appears on scroll
+        Contains logo and navigation links
+    -->
+    <nav class="main-nav" id="mainNav">
+        <div class="nav-container">
+            <!-- Logo with glitch effect on hover -->
+            <a href="index.html" class="logo" data-text="PathFinder">
+                <span class="logo-bracket">[</span>
+                PathFinder
+                <span class="logo-bracket">]</span>
+            </a>
+            
+            <!-- Hamburger menu for mobile -->
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            
+            <!-- Navigation links -->
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="quiz.html" class="nav-link">Assessment</a></li>
+                <li><a href="contact.html" class="nav-link">Connect</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 
+        Hero section - main landing area
+        Features animated text and CTA button
+    -->
+    <header class="hero">
+        <div class="hero-content">
+            <!-- Animated subtitle with typing effect -->
+            <p class="hero-subtitle">
+                <span class="typing-text" id="typingText"></span>
+                <span class="cursor">|</span>
+            </p>
+            
+            <!-- Main heading with staggered animation -->
+            <h1 class="hero-title">
+                <span class="title-line" data-delay="0">DISCOVER</span>
+                <span class="title-line accent" data-delay="1">YOUR PATH</span>
+                <span class="title-line" data-delay="2">IN TECH</span>
+            </h1>
+            
+            <!-- Description text -->
+            <p class="hero-description">
+                Navigate the BSE programme with clarity. Our neural assessment maps your 
+                unique strengths and interests to find your perfect specialisation.
+            </p>
+            
+            <!-- Call-to-action buttons -->
+            <div class="hero-cta">
+                <a href="quiz.html" class="btn btn-primary">
+                    <span class="btn-text">Begin Assessment</span>
+                    <span class="btn-icon">→</span>
+                    <span class="btn-glow"></span>
+                </a>
+                <a href="#specialisations" class="btn btn-secondary">
+                    <span class="btn-text">Explore Paths</span>
+                </a>
+            </div>
+            
+            <!-- Scroll indicator -->
+            <div class="scroll-indicator">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+                <span>Scroll to explore</span>
+            </div>
+        </div>
+        
+        <!-- Floating specialisation icons -->
+        <div class="floating-icons">
+            <div class="float-icon" data-spec="lowlevel" title="Low-Level Programming">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="4" y="4" width="16" height="16" rx="2"/>
+                    <path d="M9 9h6M9 12h6M9 15h4"/>
+                </svg>
+            </div>
+            <div class="float-icon" data-spec="arvr" title="AR/VR">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M2 8a2 2 0 012-2h16a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V8z"/>
+                    <circle cx="8" cy="12" r="2"/><circle cx="16" cy="12" r="2"/>
+                </svg>
+            </div>
+            <div class="float-icon" data-spec="fullstack" title="Full-Stack Web Development">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/>
+                </svg>
+            </div>
+            <div class="float-icon" data-spec="ml" title="Machine Learning">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>
+                    <path d="M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <!-- 
+        Specialisations section - showcases the four paths
+        Uses card grid with hover effects
+    -->
+    <section class="specialisations" id="specialisations">
+        <div class="section-container">
+            <!-- Section header -->
+            <div class="section-header">
+                <span class="section-tag">// PATHWAYS</span>
+                <h2 class="section-title">Four Paths, <span class="accent">One Future</span></h2>
+                <p class="section-subtitle">
+                    Each specialisation opens unique doors in the tech industry. 
+                    Which resonates with your vision?
+                </p>
+            </div>
+            
+            <!-- Specialisation cards grid -->
+            <div class="spec-grid">
+                <!-- Low-Level Programming Card -->
+                <article class="spec-card" data-spec="lowlevel">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="4" y="4" width="16" height="16" rx="2"/>
+                                <path d="M9 9h6M9 12h6M9 15h4"/>
+                            </svg>
+                        </div>
+                        <span class="card-number">01</span>
+                        <h3 class="card-title">Low-Level Programming</h3>
+                        <p class="card-description">
+                            Dive into the machine's core. Master systems programming, 
+                            embedded systems, and performance optimization.
+                        </p>
+                        <ul class="card-skills">
+                            <li>C/C++</li>
+                            <li>Assembly</li>
+                            <li>OS Development</li>
+                            <li>Embedded Systems</li>
+                        </ul>
+                        <div class="card-pattern">
+                            <span>01</span><span>10</span><span>11</span><span>00</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- AR/VR Card -->
+                <article class="spec-card" data-spec="arvr">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M2 8a2 2 0 012-2h16a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V8z"/>
+                                <circle cx="8" cy="12" r="2"/><circle cx="16" cy="12" r="2"/>
+                            </svg>
+                        </div>
+                        <span class="card-number">02</span>
+                        <h3 class="card-title">AR/VR Development</h3>
+                        <p class="card-description">
+                            Shape reality itself. Create immersive experiences that 
+                            blur the line between digital and physical worlds.
+                        </p>
+                        <ul class="card-skills">
+                            <li>Unity/Unreal</li>
+                            <li>3D Graphics</li>
+                            <li>Spatial Computing</li>
+                            <li>UX Design</li>
+                        </ul>
+                        <div class="card-pattern">
+                            <span>◈</span><span>◇</span><span>◈</span><span>◇</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Full-Stack Card -->
+                <article class="spec-card" data-spec="fullstack">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/>
+                            </svg>
+                        </div>
+                        <span class="card-number">03</span>
+                        <h3 class="card-title">Full-Stack Web Dev</h3>
+                        <p class="card-description">
+                            Build the web's future. From databases to interfaces, 
+                            craft complete digital experiences.
+                        </p>
+                        <ul class="card-skills">
+                            <li>React/Vue</li>
+                            <li>Node.js</li>
+                            <li>Databases</li>
+                            <li>Cloud Services</li>
+                        </ul>
+                        <div class="card-pattern">
+                            <span>&lt;/&gt;</span><span>{}</span><span>[]</span><span>()</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Machine Learning Card -->
+                <article class="spec-card" data-spec="ml">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="3"/>
+                                <path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>
+                                <path d="M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83"/>
+                            </svg>
+                        </div>
+                        <span class="card-number">04</span>
+                        <h3 class="card-title">Machine Learning</h3>
+                        <p class="card-description">
+                            Teach machines to think. Harness data and algorithms 
+                            to solve tomorrow's challenges today.
+                        </p>
+                        <ul class="card-skills">
+                            <li>Python</li>
+                            <li>TensorFlow</li>
+                            <li>Data Science</li>
+                            <li>Neural Networks</li>
+                        </ul>
+                        <div class="card-pattern">
+                            <span>∑</span><span>∫</span><span>∆</span><span>∇</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+        How it works section - explains the assessment process
+        Uses timeline/step visualization
+    -->
+    <section class="how-it-works" id="howItWorks">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag">// PROCESS</span>
+                <h2 class="section-title">How <span class="accent">PathFinder</span> Works</h2>
+                <p class="section-subtitle">
+                    Our neural assessment algorithm analyzes your responses to map 
+                    your unique profile to the ideal specialisation.
+                </p>
+            </div>
+            
+            <!-- Process steps -->
+            <div class="process-timeline">
+                <div class="timeline-line"></div>
+                
+                <div class="process-step" data-step="1">
+                    <div class="step-node">
+                        <span class="node-number">01</span>
+                    </div>
+                    <div class="step-content">
+                        <h3>Neural Mapping</h3>
+                        <p>Answer 10 carefully designed questions that probe your 
+                        interests, problem-solving style, and creative preferences.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step" data-step="2">
+                    <div class="step-node">
+                        <span class="node-number">02</span>
+                    </div>
+                    <div class="step-content">
+                        <h3>Pattern Analysis</h3>
+                        <p>Our algorithm processes your responses, identifying patterns 
+                        that align with each specialisation's requirements.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step" data-step="3">
+                    <div class="step-node">
+                        <span class="node-number">03</span>
+                    </div>
+                    <div class="step-content">
+                        <h3>Path Revelation</h3>
+                        <p>Receive your personalized results with detailed insights, 
+                        compatibility scores, and actionable next steps.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CTA button -->
+            <div class="section-cta">
+                <a href="quiz.html" class="btn btn-primary btn-large">
+                    <span class="btn-text">Start Your Journey</span>
+                    <span class="btn-icon">→</span>
+                    <span class="btn-glow"></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+        Stats section - shows credibility numbers
+        Features animated counters
+    -->
+    <section class="stats-section">
+        <div class="section-container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="500">0</span>
+                    <span class="stat-label">Students Guided</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="95">0</span>
+                    <span class="stat-suffix">%</span>
+                    <span class="stat-label">Satisfaction Rate</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="10">0</span>
+                    <span class="stat-label">Assessment Questions</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="4">0</span>
+                    <span class="stat-label">Specialisations</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+        Footer section
+        Contains links and copyright info
+    -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <span>[</span>PathFinder<span>]</span>
+                    </a>
+                    <p>Helping BSE students navigate their tech journey with clarity and confidence.</p>
+                </div>
+                
+                <nav class="footer-nav">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="quiz.html">Assessment</a></li>
+                        <li><a href="contact.html">Connect</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="footer-contact">
+                    <h4>Get in Touch</h4>
+                    <ul class="footer-contact-list">
+                        <li>
+                            <a href="mailto:w.banituze@alustudent.com" class="footer-contact-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                                <span>Email</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/banituze" target="_blank" rel="noopener" class="footer-contact-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                                </svg>
+                                <span>GitHub</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://linkedin.com/in/winebald" target="_blank" rel="noopener" class="footer-contact-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                                    <rect x="2" y="9" width="4" height="12"/>
+                                    <circle cx="4" cy="4" r="2"/>
+                                </svg>
+                                <span>LinkedIn</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 PathFinder by Winebald Banituze. All rights reserved.</p>
+                <p class="footer-tagline">Built for the BSE Community at ALCHE</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Link to external JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
