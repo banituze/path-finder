@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 
+        BSE Specialisation Advisor - Contact Page
+        Author: Winebald Banituze
+        Description: Creative contact page with terminal-style interface
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Connect with Winebald Banituze - Creator of PathFinder">
+    <title>Connect | PathFinder</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="contact-page">
+    <!-- Background effects -->
+    <div class="grid-background"></div>
+    
+    <!-- Navigation -->
+    <nav class="main-nav scrolled">
+        <div class="nav-container">
+            <a href="index.html" class="logo" data-text="PathFinder">
+                <span class="logo-bracket">[</span>
+                PathFinder
+                <span class="logo-bracket">]</span>
+            </a>
+            
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="quiz.html" class="nav-link">Assessment</a></li>
+                <li><a href="contact.html" class="nav-link active">Connect</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <main class="contact-main">
+        <div class="contact-container">
+            <!-- Left side: Terminal-style info card -->
+            <section class="contact-info">
+                <div class="terminal-window">
+                    <div class="terminal-header">
+                        <div class="terminal-buttons">
+                            <span class="term-btn close"></span>
+                            <span class="term-btn minimize"></span>
+                            <span class="term-btn maximize"></span>
+                        </div>
+                        <span class="terminal-title">about_me.sh</span>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-line">
+                            <span class="prompt">$</span>
+                            <span class="command">whoami</span>
+                        </div>
+                        <div class="terminal-output">
+                            <pre>
+╔══════════════════════════════════════╗
+║     WINEBALD BANITUZE                ║
+║     BSE Student @ ALCHE                ║
+║     Software Engineer in Training    ║
+╚══════════════════════════════════════╝
+                            </pre>
+                        </div>
+                        
+                        <div class="terminal-line">
+                            <span class="prompt">$</span>
+                            <span class="command">cat passion.txt</span>
+                        </div>
+                        <div class="terminal-output">
+                            <p>Building technology that creates
+positive impact in African communities.
+Currently focused on:</p>
+                            <ul class="terminal-list">
+                                <li>> Water access solutions</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="terminal-line">
+                            <span class="prompt">$</span>
+                            <span class="command">ls skills/</span>
+                        </div>
+                        <div class="terminal-output skill-tags">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Bash</span>
+                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">GitHub</span>
+                        </div>
+                        
+                        <div class="terminal-line">
+                            <span class="prompt">$</span>
+                            <span class="command typing-cmd" id="typingCmd">_</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Social links styled as commands -->
+                <div class="contact-links">
+                    <h3 class="links-title">// QUICK CONNECT</h3>
+                    
+                    <a href="mailto:w.banituze@alustudent.com" class="contact-link">
+                        <span class="link-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </span>
+                        <span class="link-text">
+                            <span class="link-label">Email</span>
+                            <span class="link-value">w.banituze@alustudent.com</span>
+                        </span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    
+                    <a href="https://github.com/banituze" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <span class="link-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                            </svg>
+                        </span>
+                        <span class="link-text">
+                            <span class="link-label">GitHub</span>
+                            <span class="link-value">github.com/banituze</span>
+                        </span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                    
+                    <a href="https://linkedin.com/in/winebald" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <span class="link-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                                <rect x="2" y="9" width="4" height="12"/>
+                                <circle cx="4" cy="4" r="2"/>
+                            </svg>
+                        </span>
+                        <span class="link-text">
+                            <span class="link-label">LinkedIn</span>
+                            <span class="link-value">linkedin.com/in/winebald</span>
+                        </span>
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Right side: Contact form -->
+            <section class="contact-form-section">
+                <div class="form-header">
+                    <span class="form-tag">// SEND A MESSAGE</span>
+                    <h2 class="form-title">Let's <span class="accent">Connect</span></h2>
+                    <p class="form-subtitle">
+                        Have questions about PathFinder, want to collaborate, 
+                        or just want to say hi? Drop me a message!
+                    </p>
+                </div>
+                
+                <form id="contactForm" class="contact-form" novalidate>
+                    <!-- Name field -->
+                    <div class="form-group">
+                        <label for="name" class="form-label">
+                            <span class="label-text">Your Name</span>
+                            <span class="label-required">*</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="text" 
+                                   id="name" 
+                                   name="name" 
+                                   class="form-input"
+                                   placeholder="Enter your name"
+                                   required
+                                   minlength="2"
+                                   maxlength="50"
+                                   pattern="[A-Za-z\s'-]+">
+                            <span class="input-border"></span>
+                        </div>
+                        <span class="form-error" id="name-error">Please enter a valid name (letters only)</span>
+                    </div>
+                    
+                    <!-- Email field -->
+                    <div class="form-group">
+                        <label for="email" class="form-label">
+                            <span class="label-text">Email Address</span>
+                            <span class="label-required">*</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="email" 
+                                   id="email" 
+                                   name="email" 
+                                   class="form-input"
+                                   placeholder="you@example.com"
+                                   required>
+                            <span class="input-border"></span>
+                        </div>
+                        <span class="form-error" id="email-error">Please enter a valid email address</span>
+                    </div>
+                    
+                    <!-- Subject dropdown -->
+                    <div class="form-group">
+                        <label for="subject" class="form-label">
+                            <span class="label-text">Subject</span>
+                            <span class="label-required">*</span>
+                        </label>
+                        <div class="select-wrapper">
+                            <select id="subject" name="subject" class="form-select" required>
+                                <option value="" disabled selected>Select a topic</option>
+                                <option value="question">Question about PathFinder</option>
+                                <option value="feedback">Feedback / Suggestion</option>
+                                <option value="collaboration">Collaboration Opportunity</option>
+                                <option value="bug">Report a Bug</option>
+                                <option value="other">Something Else</option>
+                            </select>
+                            <span class="select-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M6 9l6 6 6-6"/>
+                                </svg>
+                            </span>
+                        </div>
+                        <span class="form-error" id="subject-error">Please select a subject</span>
+                    </div>
+                    
+                    <!-- Message textarea -->
+                    <div class="form-group">
+                        <label for="message" class="form-label">
+                            <span class="label-text">Your Message</span>
+                            <span class="label-required">*</span>
+                        </label>
+                        <div class="textarea-wrapper">
+                            <textarea id="message" 
+                                      name="message" 
+                                      class="form-textarea"
+                                      placeholder="What's on your mind?"
+                                      required
+                                      minlength="10"
+                                      maxlength="1000"
+                                      rows="5"></textarea>
+                            <span class="textarea-border"></span>
+                            <span class="char-counter">
+                                <span id="messageCount">0</span>/1000
+                            </span>
+                        </div>
+                        <span class="form-error" id="message-error">Please enter at least 10 characters</span>
+                    </div>
+                    
+                    <!-- Honeypot field for spam protection -->
+                    <div class="form-group honeypot" aria-hidden="true">
+                        <label for="website">Website (leave empty)</label>
+                        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                    </div>
+                    
+                    <!-- Newsletter checkbox -->
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="newsletter" name="newsletter">
+                            <span class="checkbox-custom">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 12l5 5L20 7"/>
+                                </svg>
+                            </span>
+                            <span class="checkbox-text">Keep me updated about PathFinder improvements</span>
+                        </label>
+                    </div>
+                    
+                    <!-- Submit button -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-large" id="submitBtn">
+                            <span class="btn-text">Send Message</span>
+                            <span class="btn-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                                </svg>
+                            </span>
+                            <span class="btn-glow"></span>
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- Success message -->
+                <div class="form-success" id="formSuccess" style="display: none;">
+                    <div class="success-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M8 12l3 3 5-6"/>
+                        </svg>
+                    </div>
+                    <h3>Message Sent!</h3>
+                    <p>Thanks for reaching out. I'll get back to you as soon as possible.</p>
+                    <button type="button" class="btn btn-ghost" id="sendAnother">
+                        <span>Send Another Message</span>
+                    </button>
+                </div>
+            </section>
+        </div>
+        
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="faq-container">
+                <h3 class="faq-title">Frequently Asked Questions</h3>
+                
+                <div class="faq-grid">
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span>How accurate is the PathFinder assessment?</span>
+                            <span class="faq-icon">+</span>
+                        </summary>
+                        <p class="faq-answer">
+                            PathFinder is designed to provide guidance based on your interests and strengths. 
+                            While no assessment is perfect, it gives you a solid starting point for exploring 
+                            specialisations that align with your preferences.
+                        </p>
+                    </details>
+                    
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span>Can I retake the assessment?</span>
+                            <span class="faq-icon">+</span>
+                        </summary>
+                        <p class="faq-answer">
+                            Absolutely! You can retake the assessment as many times as you'd like. 
+                            Your interests may evolve as you learn more about each specialisation.
+                        </p>
+                    </details>
+                    
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span>Is my data stored anywhere?</span>
+                            <span class="faq-icon">+</span>
+                        </summary>
+                        <p class="faq-answer">
+                            No, PathFinder runs entirely in your browser. Your responses are not 
+                            stored on any server, they're processed locally and your results are 
+                            generated client-side.
+                        </p>
+                    </details>
+                    
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span>Who created PathFinder?</span>
+                            <span class="faq-icon">+</span>
+                        </summary>
+                        <p class="faq-answer">
+                            PathFinder was created by Winebald Banituze, a BSE student at the 
+                            African Leadership College of Higher Education, as a tool to help fellow students 
+                            navigate their tech journey.
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </section>
+    </main>
+
+   <!-- 
+        Footer section
+        Contains links and copyright info
+    -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <span>[</span>PathFinder<span>]</span>
+                    </a>
+                    <p>Helping BSE students navigate their tech journey with clarity and confidence.</p>
+                </div>
+                
+                <nav class="footer-nav">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="quiz.html">Assessment</a></li>
+                        <li><a href="contact.html">Connect</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="footer-contact">
+                    <h4>Get in Touch</h4>
+                    <ul class="footer-contact-list">
+                        <li>
+                            <a href="mailto:w.banituze@alustudent.com" class="footer-contact-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                                <span>Email</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/banituze" target="_blank" rel="noopener" class="footer-contact-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                                </svg>
+                                <span>GitHub</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://linkedin.com/in/winebald" target="_blank" rel="noopener" class="footer-contact-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                                    <rect x="2" y="9" width="4" height="12"/>
+                                    <circle cx="4" cy="4" r="2"/>
+                                </svg>
+                                <span>LinkedIn</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 PathFinder by Winebald Banituze. All rights reserved.</p>
+                <p class="footer-tagline">Built for the BSE Community at ALCHE</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Link to external JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
