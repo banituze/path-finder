@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 
+        BSE Specialisation Advisor - Quiz Page
+        Author: Winebald Banituze
+        Description: Interactive assessment with diverse question types
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Take the BSE Specialisation Assessment to discover your ideal tech path">
+    <title>Assessment | PathFinder</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="quiz-page">
+    <!-- Background canvas for subtle effects -->
+    <canvas id="quiz-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="main-nav scrolled">
+        <div class="nav-container">
+            <a href="index.html" class="logo" data-text="PathFinder">
+                <span class="logo-bracket">[</span>
+                PathFinder
+                <span class="logo-bracket">]</span>
+            </a>
+            
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="quiz.html" class="nav-link active">Assessment</a></li>
+                <li><a href="contact.html" class="nav-link">Connect</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Quiz container -->
+    <main class="quiz-main">
+        <!-- Progress indicator -->
+        <div class="quiz-progress">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-info">
+                <span class="progress-text">Question <span id="currentQ">1</span> of <span id="totalQ">10</span></span>
+                <span class="progress-percent" id="progressPercent">0%</span>
+            </div>
+        </div>
+
+        <!-- Quiz form - all questions in a single form for validation -->
+        <form id="quizForm" class="quiz-form" novalidate>
+            
+            <!-- 
+                Question 1: Visual Card Selection
+                Type: Radio buttons styled as visual cards
+                Tests: Project preference / work style
+            -->
+            <section class="question-section active" data-question="1">
+                <div class="question-container">
+                    <div class="question-header">
+                        <span class="question-number">01</span>
+                        <span class="question-category">Project Preference</span>
+                    </div>
+                    
+                    <h2 class="question-text">
+                        You're given a weekend to build something amazing. Which project calls to you?
+                    </h2>
+                    
+                    <div class="answer-grid visual-cards">
+                        <!-- Low-Level Option -->
+                        <label class="visual-card" data-spec="lowlevel">
+                            <input type="radio" name="q1" value="lowlevel" required>
+                            <div class="card-visual">
+                                <div class="card-icon-wrap">
+                                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <rect x="8" y="8" width="32" height="32" rx="4"/>
+                                        <path d="M16 16h16M16 24h16M16 32h10"/>
+                                        <circle cx="38" cy="32" r="2" fill="currentColor"/>
+                                    </svg>
+                                </div>
+                                <h3>Build an OS Kernel</h3>
+                                <p>Create something that talks directly to hardware</p>
+                            </div>
+                            <div class="card-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 12l5 5L20 7"/>
+                                </svg>
+                            </div>
+                        </label>
+                        
+                        <!-- AR/VR Option -->
+                        <label class="visual-card" data-spec="arvr">
+                            <input type="radio" name="q1" value="arvr" required>
+                            <div class="card-visual">
+                                <div class="card-icon-wrap">
+                                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M4 16a4 4 0 014-4h32a4 4 0 014 4v16a4 4 0 01-4 4H8a4 4 0 01-4-4V16z"/>
+                                        <circle cx="16" cy="24" r="5"/><circle cx="32" cy="24" r="5"/>
+                                    </svg>
+                                </div>
+                                <h3>VR Escape Room</h3>
+                                <p>Design an immersive virtual experience</p>
+                            </div>
+                            <div class="card-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 12l5 5L20 7"/>
+                                </svg>
+                            </div>
+                        </label>
+                        
+                        <!-- Full-Stack Option -->
+                        <label class="visual-card" data-spec="fullstack">
+                            <input type="radio" name="q1" value="fullstack" required>
+                            <div class="card-visual">
+                                <div class="card-icon-wrap">
+                                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <rect x="6" y="8" width="36" height="32" rx="4"/>
+                                        <path d="M6 16h36M18 24v12M30 24v12"/>
+                                    </svg>
+                                </div>
+                                <h3>Social Platform</h3>
+                                <p>Build a full web app from scratch</p>
+                            </div>
+                            <div class="card-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 12l5 5L20 7"/>
+                                </svg>
+                            </div>
+                        </label>
+                        
+                        <!-- ML Option -->
+                        <label class="visual-card" data-spec="ml">
+                            <input type="radio" name="q1" value="ml" required>
+                            <div class="card-visual">
+                                <div class="card-icon-wrap">
+                                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <circle cx="24" cy="24" r="6"/>
+                                        <path d="M24 6v6M24 36v6M6 24h6M36 24h6"/>
+                                        <path d="M11.76 11.76l4.24 4.24M32 32l4.24 4.24M11.76 36.24l4.24-4.24M32 16l4.24-4.24"/>
+                                    </svg>
+                                </div>
+                                <h3>AI Music Generator</h3>
+                                <p>Train a model to compose original music</p>
+                            </div>
+                            <div class="card-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 12l5 5L20 7"/>
+                                </svg>
+                            </div>
+                        </label>
+                    </div>
+                    
+                    <p class="validation-error" id="error-q1">Please select an option to continue</p>
+                </div>
+            </section>
+
+            <!-- 
+                Question 2: Slider Scale
+                Type: Range input with visual feedback
+                Tests: Abstraction preference
+            -->
+            <section class="question-section" data-question="2">
+                <div class="question-container">
+                    <div class="question-header">
+                        <span class="question-number">02</span>
+                        <span class="question-category">Working Style</span>
+                    </div>
+                    
+                    <h2 class="question-text">
+                        How close to the "metal" do you like to work?
+                    </h2>
+                    
+                    <p class="question-hint">
+                        Drag the slider between high-level abstractions and low-level details
+                    </p>
+                    
+                    <div class="slider-container">
+                        <div class="slider-labels">
+                            <span>High-Level<br><small>Frameworks & APIs</small></span>
+                            <span>Low-Level<br><small>Bits & Bytes</small></span>
+                        </div>
+                        
+                        <div class="slider-track">
+                            <input type="range" 
+                                   name="q2" 
+                                   id="q2-slider" 
+                                   min="1" 
+                                   max="4" 
+                                   value="2" 
+                                   class="styled-slider"
+                                   required>
+                            <div class="slider-fill" id="slider-fill-2"></div>
+                            <div class="slider-markers">
+                                <span data-value="1"></span>
+                                <span data-value="2"></span>
+                                <span data-value="3"></span>
+                                <span data-value="4"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="slider-value-display">
+                            <span id="slider-value-2" class="value-text">Balanced Approach</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 
+                Question 3: Icon Reaction
+                Type: Single select with icon feedback
+                Tests: Problem-solving joy
+            -->
+            <section class="question-section" data-question="3">
+                <div class="question-container">
+                    <div class="question-header">
+                        <span class="question-number">03</span>
+                        <span class="question-category">Joy Trigger</span>
+                    </div>
+                    
+                    <h2 class="question-text">
+                        What makes you feel most alive when coding?
+                    </h2>
+                    
+                    <div class="answer-grid icon-options">
+                        <label class="icon-option" data-spec="lowlevel">
+                            <input type="radio" name="q3" value="lowlevel" required>
+                            <div class="icon-visual">
+                                <span class="option-icon">
+                                    <svg viewBox="0 0 32 32" fill="currentColor">
+                                        <path d="M18 2L6 18h8l-2 12 12-16h-8l2-12z"/>
+                                    </svg>
+                                </span>
+                                <span class="icon-text">Making something blazingly fast</span>
+                            </div>
+                        </label>
+                        
+                        <label class="icon-option" data-spec="arvr">
+                            <input type="radio" name="q3" value="arvr" required>
+                            <div class="icon-visual">
+                                <span class="option-icon">
+                                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <circle cx="16" cy="16" r="12"/>
+                                        <ellipse cx="16" cy="16" rx="12" ry="4.5"/>
+                                        <ellipse cx="16" cy="16" rx="12" ry="4.5" transform="rotate(60 16 16)"/>
+                                        <ellipse cx="16" cy="16" rx="12" ry="4.5" transform="rotate(120 16 16)"/>
+                                        <circle cx="16" cy="16" r="3" fill="currentColor"/>
+                                    </svg>
+                                </span>
+                                <span class="icon-text">Creating impossible worlds</span>
+                            </div>
+                        </label>
+                        
+                        <label class="icon-option" data-spec="fullstack">
+                            <input type="radio" name="q3" value="fullstack" required>
+                            <div class="icon-visual">
+                                <span class="option-icon">
+                                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <circle cx="16" cy="10" r="6"/>
+                                        <path d="M6 28c0-5.5 4.5-10 10-10s10 4.5 10 10"/>
+                                        <path d="M16 22l4 4-4 4-4-4 4-4z" fill="currentColor" stroke="none"/>
+                                    </svg>
+                                </span>
+                                <span class="icon-text">Seeing users love my interface</span>
+                            </div>
+                        </label>
+                        
+                        <label class="icon-option" data-spec="ml">
+                            <input type="radio" name="q3" value="ml" required>
+                            <div class="icon-visual">
+                                <span class="option-icon">
+                                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M16 3c-5.5 0-10 4-10 9.5 0 3.5 1.8 6.5 4.5 8.2v4.3c0 1 .7 1.7 1.7 1.7h7.6c1 0 1.7-.7 1.7-1.7v-4.3c2.7-1.7 4.5-4.7 4.5-8.2 0-5.5-4.5-9.5-10-9.5z"/>
+                                        <path d="M12 28h8M13.5 31h5"/>
+                                        <circle cx="13" cy="11" r="1.5" fill="currentColor"/>
+                                        <circle cx="19" cy="11" r="1.5" fill="currentColor"/>
+                                        <path d="M13 16c1.5 1.5 4.5 1.5 6 0"/>
+                                    </svg>
+                                </span>
+                                <span class="icon-text">Teaching a machine to learn</span>
+                            </div>
+                        </label>
+                    </div>
+                    
+                    <p class="validation-error" id="error-q3">Please select what excites you most</p>
+                </div>
+            </section>
+
+            <!-- 
+                Question 4: Matrix Choice with Icons
+                Type: 2x2 scenario matrix
+                Tests: Problem domain preference
+            -->
+            <section class="question-section" data-question="4">
+                <div class="question-container">
+                    <div class="question-header">
+                        <span class="question-number">04</span>
+                        <span class="question-category">Dream Job</span>
+                    </div>
+                    
+                    <h2 class="question-text">
+                        Fast-forward 5 years. Where do you see yourself?
+                    </h2>
+                    
+                    <div class="answer-grid visual-cards">
+                        <!-- Low-Level - Wrench/Systems -->
+                        <label class="visual-card" data-spec="lowlevel">
+                            <input type="radio" name="q4" value="lowlevel" required>
+                            <div class="card-visual">
+                                <div class="card-icon-wrap">
+                                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M38 10c-4-4-10-4-14 0l-2 2 14 14 2-2c4-4 4-10 0-14z"/>
+                                        <path d="M22 12L8 26c-2 2-2 5 0 7l7 7c2 2 5 2 7 0l14-14"/>
+                                        <path d="M14 34l-4 4"/>
+                                    </svg>
+                                </div>
+                                <h3>Systems Architect</h3>
+                                <p>Optimizing kernels at a chip manufacturer</p>
+                            </div>
+                            <div class="card-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 12l5 5L20 7"/>
+                                </svg>
+                            </div>
+                        </label>
+                        
+                        <!-- AR/VR - Gamepad/Gaming -->
+                        <label class="visual-card" data-spec="arvr">
+                            <input type="radio" name="q4" value="arvr" required>
+                            <div class="card-visual">
+                                <div class="card-icon-wrap">
+                                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <rect x="4" y="14" width="40" height="24" rx="6"/>
+                                        <circle cx="14" cy="26" r="5"/>
+                                        <circle cx="34" cy="22" r="2" fill="currentColor"/>
+                                        <circle cx="38" cy="26" r="2" fill="currentColor"/>
+                                        <circle cx="34" cy="30" r="2" fill="currentColor"/>
+                                        <circle cx="30" cy="26" r="2" fill="currentColor"/>
+                                        <path d="M14 23v6M11 26h6"/>
+                                    </svg>
+                                </div>
+                                <h3>XR Developer</h3>
+                                <p>Building the metaverse at a gaming studio</p>
+                            </div>
+                            <div class="card-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 12l5 5L20 7"/>
+                                </svg>
+                            </div>
+                        </label>
+                        
+                        <!-- Full-Stack - Rocket/Startup -->
+                        <label class="visual-card" data-spec="fullstack">
+                            <input type="radio" name="q4" value="fullstack" required>
+                            <div class="card-visual">
+                                <div class="card-icon-wrap">
+                                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M24 4c-6 6-8 14-8 22h16c0-8-2-16-8-22z"/>
+                                        <path d="M16 26l-6 10h8M32 26l6 10h-8"/>
+                                        <circle cx="24" cy="18" r="4"/>
+                                        <path d="M20 36h8v6h-8z"/>
+                                        <path d="M22 42h4v4h-4z"/>
+                                    </svg>
+                                </div>
+                                <h3>Tech Lead</h3>
+                                <p>Scaling products at a fast-growing startup</p>
+                            </div>
+                            <div class="card-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 12l5 5L20 7"/>
+                                </svg>
+                            </div>
+                        </label>
+                        
+                        <!-- ML - Microscope/Research -->
+                        <label class="visual-card" data-spec="ml">
+                            <input type="radio" name="q4" value="ml" required>
+                            <div class="card-visual">
+                                <div class="card-icon-wrap">
+                                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <circle cx="20" cy="14" r="8"/>
+                                        <path d="M20 22v14"/>
+                                        <path d="M12 28h16"/>
+                                        <path d="M10 44h28"/>
+                                        <path d="M16 36h8v8h-8z"/>
+                                        <path d="M26 14l12 12"/>
+                                        <circle cx="40" cy="28" r="4"/>
+                                    </svg>
+                                </div>
+                                <h3>ML Researcher</h3>
+                                <p>Pushing AI boundaries at a research lab</p>
+                            </div>
+                            <div class="card-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="M5 12l5 5L20 7"/>
+                                </svg>
+                            </div>
+                        </label>
+                    </div>
+                    
+                    <p class="validation-error" id="error-q4">Please choose your dream destination</p>
+                </div>
+            </section>
+
+            <!-- 
+                Question 5: Word Association
+                Type: Quick-pick word cloud
+                Tests: Gut reaction to concepts
+            -->
+            <section class="question-section" data-question="5">
+                <div class="question-container">
+                    <div class="question-header">
+                        <span class="question-number">05</span>
+                        <span class="question-category">Word Resonance</span>
+                    </div>
+                    
+                    <h2 class="question-text">
+                        Which word cluster speaks to your soul?
+                    </h2>
+                    
+                    <p class="question-hint">
+                        Don't overthink, go with your gut reaction
+                    </p>
+                    
+                    <div class="word-cloud-options">
+                        <label class="word-cloud-option" data-spec="lowlevel">
+                            <input type="radio" name="q5" value="lowlevel" required>
+                            <div class="word-cluster">
+                                <span class="word primary">EFFICIENCY</span>
+                                <span class="word">Memory</span>
+                                <span class="word">Registers</span>
+                                <span class="word">Precision</span>
+                                <span class="word">Hardware</span>
+                            </div>
+                        </label>
+                        
+                        <label class="word-cloud-option" data-spec="arvr">
+                            <input type="radio" name="q5" value="arvr" required>
+                            <div class="word-cluster">
+                                <span class="word primary">IMMERSION</span>
+                                <span class="word">Presence</span>
+                                <span class="word">Spatial</span>
+                                <span class="word">Reality</span>
+                                <span class="word">Experience</span>
+                            </div>
+                        </label>
+                        
+                        <label class="word-cloud-option" data-spec="fullstack">
+                            <input type="radio" name="q5" value="fullstack" required>
+                            <div class="word-cluster">
+                                <span class="word primary">CONNECTION</span>
+                                <span class="word">Users</span>
+                                <span class="word">Scale</span>
+                                <span class="word">Deploy</span>
+                                <span class="word">Impact</span>
+                            </div>
+                        </label>
+                        
+                        <label class="word-cloud-option" data-spec="ml">
+                            <input type="radio" name="q5" value="ml" required>
+                            <div class="word-cluster">
+                                <span class="word primary">PATTERNS</span>
+                                <span class="word">Data</span>
+                                <span class="word">Models</span>
+                                <span class="word">Intelligence</span>
+                                <span class="word">Prediction</span>
+                            </div>
+                        </label>
+                    </div>
+                    
+                    <p class="validation-error" id="error-q5">Please select the words that resonate</p>
+                </div>
+            </section>
+
+            <!-- 
+                Question 6: Checkbox Multi-Select
+                Type: Multiple selection with limit
+                Tests: Skill interests
+            -->
+            <section class="question-section" data-question="6">
+                <div class="question-container">
+                    <div class="question-header">
+                        <span class="question-number">06</span>
+                        <span class="question-category">Skill Gravitation</span>
+                    </div>
+                    
+                    <h2 class="question-text">
+                        Pick exactly 3 skills you're most excited to master
+                    </h2>
+                    
+                    <p class="question-hint">
+                        Selected: <span id="skill-count">0</span>/3
+                    </p>
+                    
+                    <div class="checkbox-grid skills-grid">
+                        <label class="skill-checkbox" data-spec="lowlevel">
+                            <input type="checkbox" name="q6" value="lowlevel-1">
+                            <span class="checkbox-visual">
+                                <svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
+                            </span>
+                            <span class="skill-name">Memory Management</span>
+                        </label>
+                        
+                        <label class="skill-checkbox" data-spec="arvr">
+                            <input type="checkbox" name="q6" value="arvr-1">
+                            <span class="checkbox-visual">
+                                <svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
+                            </span>
+                            <span class="skill-name">3D Rendering</span>
+                        </label>
+                        
+                        <label class="skill-checkbox" data-spec="fullstack">
+                            <input type="checkbox" name="q6" value="fullstack-1">
+                            <span class="checkbox-visual">
+                                <svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
+                            </span>
+                            <span class="skill-name">API Design</span>
+                        </label>
+                        
+                        <label class="skill-checkbox" data-spec="ml">
+                            <input type="checkbox" name="q6" value="ml-1">
+                            <span class="checkbox-visual">
+                                <svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
+                            </span>
+                            <span class="skill-name">Neural Networks</span>
+                        </label>
+                        
+                        <label class="skill-checkbox" data-spec="lowlevel">
+                            <input type="checkbox" name="q6" value="lowlevel-2">
+                            <span class="checkbox-visual">
+                                <svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
+                            </span>
+                            <span class="skill-name">Assembly Language</span>
+                        </label>
+                        
+                        <label class="skill-checkbox" data-spec="arvr">
+                            <input type="checkbox" name="q6" value="arvr-2">
+                            <span class="checkbox-visual">
+                                <svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
+                            </span>
+                            <span class="skill-name">Spatial UX Design</span>
+                        </label>
+                        
+                        <label class="skill-checkbox" data-spec="fullstack">
+                            <input type="checkbox" name="q6" value="fullstack-2">
+                            <span class="checkbox-visual">
+                                <svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
+                            </span>
+                            <span class="skill-name">Database Optimization</span>
+                        </label>
+                        
+                        <label class="skill-checkbox" data-spec="ml">
+                            <input type="checkbox" name="q6" value="ml-2">
+                            <span class="checkbox-visual">
+                                <svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
+                            </span>
+                            <span class="skill-name">Data Visualization</span>
+                        </label>
+                    </div>
+                    
+                    <p class="validation-error" id="error-q6">Please select exactly 3 skills</p>
+                </div>
+            </section>
+
+            <!-- 
+                Question 7: Scenario Choice
+                Type: Story-based selection
+                Tests: Decision-making style
+            -->
+            <section class="question-section" data-question="7">
+                <div class="question-container">
+                    <div class="question-header">
+                        <span class="question-number">07</span>
+                        <span class="question-category">Problem Scenario</span>
+                    </div>
+                    
+                    <h2 class="question-text">
+                        Your team's app is crashing under heavy load. What's your instinct?
+                    </h2>
+                    
+                    <div class="scenario-options">
+                        <label class="scenario-option" data-spec="lowlevel">
+                            <input type="radio" name="q7" value="lowlevel" required>
+                            <div class="scenario-content">
+                                <span class="scenario-letter">A</span>
+                                <p>"Let me profile the memory allocation and check for leaks at the system level."</p>
+                            </div>
+                        </label>
+                        
+                        <label class="scenario-option" data-spec="arvr">
+                            <input type="radio" name="q7" value="arvr" required>
+                            <div class="scenario-content">
+                                <span class="scenario-letter">B</span>
+                                <p>"I'll optimize the rendering pipeline and reduce draw calls for smoother performance."</p>
+                            </div>
+                        </label>
+                        
+                        <label class="scenario-option" data-spec="fullstack">
+                            <input type="radio" name="q7" value="fullstack" required>
+                            <div class="scenario-content">
+                                <span class="scenario-letter">C</span>
+                                <p>"Time to implement caching, load balancing, and maybe scale our infrastructure."</p>
+                            </div>
+                        </label>
+                        
+                        <label class="scenario-option" data-spec="ml">
+                            <input type="radio" name="q7" value="ml" required>
+                            <div class="scenario-content">
+                                <span class="scenario-letter">D</span>
+                                <p>"Let's analyze the usage patterns with ML to predict and prevent future crashes."</p>
+                            </div>
+                        </label>
+                    </div>
+                    
+                    <p class="validation-error" id="error-q7">Please choose your approach</p>
+                </div>
+            </section>
+
+            <!-- 
+                Question 8: Priority Ranking
+                Type: Drag or click to rank
+                Tests: Value prioritization
+            -->
+            <section class="question-section" data-question="8">
+                <div class="question-container">
+                    <div class="question-header">
+                        <span class="question-number">08</span>
+                        <span class="question-category">Value Ranking</span>
+                    </div>
+                    
+                    <h2 class="question-text">
+                        Rank what matters most in your ideal project
+                    </h2>
+                    
+                    <p class="question-hint">
+                        Click items to set their rank (1 = most important)
+                    </p>
+                    
+                    <div class="ranking-container" id="rankingContainer">
+                        <div class="ranking-item" data-spec="lowlevel" data-id="perf">
+                            <span class="rank-badge">-</span>
+                            <span class="rank-text">Raw Performance</span>
+                            <span class="rank-desc">Milliseconds matter</span>
+                        </div>
+                        
+                        <div class="ranking-item" data-spec="arvr" data-id="creative">
+                            <span class="rank-badge">-</span>
+                            <span class="rank-text">Creative Expression</span>
+                            <span class="rank-desc">Art meets technology</span>
+                        </div>
+                        
+                        <div class="ranking-item" data-spec="fullstack" data-id="users">
+                            <span class="rank-badge">-</span>
+                            <span class="rank-text">User Reach</span>
+                            <span class="rank-desc">Impact millions of lives</span>
+                        </div>
+                        
+                        <div class="ranking-item" data-spec="ml" data-id="innovation">
+                            <span class="rank-badge">-</span>
+                            <span class="rank-text">Innovation</span>
+                            <span class="rank-desc">Push boundaries of what's possible</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Hidden inputs to store ranking -->
+                    <input type="hidden" name="q8-rank1" id="q8-rank1" required>
+                    <input type="hidden" name="q8-rank2" id="q8-rank2">
+                    <input type="hidden" name="q8-rank3" id="q8-rank3">
+                    <input type="hidden" name="q8-rank4" id="q8-rank4">
+                    
+                    <button type="button" class="btn btn-ghost reset-ranking" id="resetRanking">
+                        <span>Reset Ranking</span>
+                    </button>
+                    
+                    <p class="validation-error" id="error-q8">Please rank all items (click to assign ranks)</p>
+                </div>
+            </section>
+
+            <!-- 
+                Question 9: Agreement Scale
+                Type: Likert-style agreement
+                Tests: Philosophy alignment
+            -->
+            <section class="question-section" data-question="9">
+                <div class="question-container">
+                    <div class="question-header">
+                        <span class="question-number">09</span>
+                        <span class="question-category">Philosophy Check</span>
+                    </div>
+                    
+                    <h2 class="question-text">
+                        Which statement resonates most with your coding philosophy?
+                    </h2>
+                    
+                    <div class="philosophy-options">
+                        <label class="philosophy-option" data-spec="lowlevel">
+                            <input type="radio" name="q9" value="lowlevel" required>
+                            <div class="philosophy-content">
+                                <blockquote>
+                                    "The best code is the code that runs closest to the machine, every abstraction is a cost."
+                                </blockquote>
+                                <cite>— Systems Thinking</cite>
+                            </div>
+                        </label>
+                        
+                        <label class="philosophy-option" data-spec="arvr">
+                            <input type="radio" name="q9" value="arvr" required>
+                            <div class="philosophy-content">
+                                <blockquote>
+                                    "Technology should create experiences that feel magical, transporting users to new realities."
+                                </blockquote>
+                                <cite>— Experiential Design</cite>
+                            </div>
+                        </label>
+                        
+                        <label class="philosophy-option" data-spec="fullstack">
+                            <input type="radio" name="q9" value="fullstack" required>
+                            <div class="philosophy-content">
+                                <blockquote>
+                                    "Great software is invisible, it just works, scales, and delights users seamlessly."
+                                </blockquote>
+                                <cite>— Product Engineering</cite>
+                            </div>
+                        </label>
+                        
+                        <label class="philosophy-option" data-spec="ml">
+                            <input type="radio" name="q9" value="ml" required>
+                            <div class="philosophy-content">
+                                <blockquote>
+                                    "The future belongs to systems that learn and adapt, intelligence is the ultimate feature."
+                                </blockquote>
+                                <cite>— AI-First Thinking</cite>
+                            </div>
+                        </label>
+                    </div>
+                    
+                    <p class="validation-error" id="error-q9">Please select a philosophy that speaks to you</p>
+                </div>
+            </section>
+
+            <!-- 
+                Question 10: Final Commitment
+                Type: Statement + text input
+                Tests: Self-awareness + final preference
+            -->
+            <section class="question-section" data-question="10">
+                <div class="question-container">
+                    <div class="question-header">
+                        <span class="question-number">10</span>
+                        <span class="question-category">Final Reflection</span>
+                    </div>
+                    
+                    <h2 class="question-text">
+                        Complete this sentence: "I want to build technology that..."
+                    </h2>
+                    
+                    <div class="final-options">
+                        <label class="final-option" data-spec="lowlevel">
+                            <input type="radio" name="q10" value="lowlevel" required>
+                            <span class="option-text">...pushes hardware to its absolute limits</span>
+                        </label>
+                        
+                        <label class="final-option" data-spec="arvr">
+                            <input type="radio" name="q10" value="arvr" required>
+                            <span class="option-text">...creates entirely new worlds to explore</span>
+                        </label>
+                        
+                        <label class="final-option" data-spec="fullstack">
+                            <input type="radio" name="q10" value="fullstack" required>
+                            <span class="option-text">...connects and empowers people globally</span>
+                        </label>
+                        
+                        <label class="final-option" data-spec="ml">
+                            <input type="radio" name="q10" value="ml" required>
+                            <span class="option-text">...thinks, learns, and evolves on its own</span>
+                        </label>
+                    </div>
+                    
+                    <!-- Optional: User's own statement -->
+                    <div class="custom-input-wrap">
+                        <label for="customGoal" class="custom-label">
+                            Or add your own vision (optional):
+                        </label>
+                        <input type="text" 
+                               id="customGoal" 
+                               name="customGoal" 
+                               class="custom-input"
+                               placeholder="I want to build technology that..."
+                               maxlength="200"
+                               pattern="[A-Za-z0-9\s.,!?'-]*">
+                        <span class="char-count"><span id="charCount">0</span>/200</span>
+                    </div>
+                    
+                    <p class="validation-error" id="error-q10">Please complete the sentence</p>
+                </div>
+            </section>
+
+            <!-- Navigation buttons -->
+            <div class="quiz-navigation">
+                <button type="button" class="btn btn-ghost nav-prev" id="prevBtn" disabled>
+                    <span class="btn-icon">←</span>
+                    <span class="btn-text">Previous</span>
+                </button>
+                
+                <button type="button" class="btn btn-primary nav-next" id="nextBtn">
+                    <span class="btn-text">Next</span>
+                    <span class="btn-icon">→</span>
+                    <span class="btn-glow"></span>
+                </button>
+                
+                <button type="submit" class="btn btn-primary nav-submit" id="submitBtn" style="display: none;">
+                    <span class="btn-text">Reveal My Path</span>
+                    <span class="btn-icon">✦</span>
+                    <span class="btn-glow"></span>
+                </button>
+            </div>
+        </form>
+
+        <!-- 
+            Results section - Hidden until quiz is complete
+            Shows personalized results with animations
+        -->
+        <section class="results-section" id="resultsSection" style="display: none;">
+            <div class="results-container">
+                <!-- Animated reveal header -->
+                <div class="results-header">
+                    <span class="results-tag">// YOUR PATH REVEALED</span>
+                    <h1 class="results-title">
+                        Your Ideal Specialisation is
+                    </h1>
+                </div>
+                
+                <!-- Main result card -->
+                <div class="result-card" id="resultCard">
+                    <div class="result-icon" id="resultIcon">
+                        <!-- Icon inserted by JS -->
+                    </div>
+                    <h2 class="result-name" id="resultName">Loading...</h2>
+                    <p class="result-tagline" id="resultTagline"></p>
+                </div>
+                
+                <!-- Score visualization -->
+                <div class="score-visualization">
+                    <h3 class="score-title">Your Compatibility Matrix</h3>
+                    <div class="score-bars">
+                        <div class="score-bar-item">
+                            <span class="score-label">Low-Level Programming</span>
+                            <div class="score-bar">
+                                <div class="score-fill" id="score-lowlevel" data-score="0"></div>
+                            </div>
+                            <span class="score-value" id="score-lowlevel-val">0%</span>
+                        </div>
+                        <div class="score-bar-item">
+                            <span class="score-label">AR/VR Development</span>
+                            <div class="score-bar">
+                                <div class="score-fill" id="score-arvr" data-score="0"></div>
+                            </div>
+                            <span class="score-value" id="score-arvr-val">0%</span>
+                        </div>
+                        <div class="score-bar-item">
+                            <span class="score-label">Full-Stack Web Dev</span>
+                            <div class="score-bar">
+                                <div class="score-fill" id="score-fullstack" data-score="0"></div>
+                            </div>
+                            <span class="score-value" id="score-fullstack-val">0%</span>
+                        </div>
+                        <div class="score-bar-item">
+                            <span class="score-label">Machine Learning</span>
+                            <div class="score-bar">
+                                <div class="score-fill" id="score-ml" data-score="0"></div>
+                            </div>
+                            <span class="score-value" id="score-ml-val">0%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Why it fits section -->
+                <div class="result-reasoning">
+                    <h3>Why This Fits You</h3>
+                    <div class="reasoning-content" id="reasoningContent">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+                
+                <!-- Next steps -->
+                <div class="next-steps">
+                    <h3>Your Next Steps</h3>
+                    <div class="steps-grid" id="stepsGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+                
+                <!-- Additional element: Shareable result card -->
+                <div class="share-section">
+                    <h3>Share Your Result</h3>
+                    <div class="share-card" id="shareCard">
+                        <div class="share-card-content">
+                            <span class="share-badge">PathFinder Result</span>
+                            <p class="share-text">
+                                My BSE specialisation match: <strong id="shareSpec">-</strong>
+                            </p>
+                            <span class="share-url">pathfinder.alche.edu</span>
+                        </div>
+                    </div>
+                    <div class="share-buttons">
+                        <button type="button" class="btn btn-ghost" id="copyResult">
+                            <span>Copy Result</span>
+                        </button>
+                        <button type="button" class="btn btn-ghost" id="retakeQuiz">
+                            <span>Retake Assessment</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- CTA to contact -->
+                <div class="results-cta">
+                    <p>Have questions about your result?</p>
+                    <a href="contact.html" class="btn btn-primary">
+                        <span class="btn-text">Get in Touch</span>
+                        <span class="btn-icon">→</span>
+                        <span class="btn-glow"></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 
+        Footer section
+        Contains links and copyright info
+    -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <span>[</span>PathFinder<span>]</span>
+                    </a>
+                    <p>Helping BSE students navigate their tech journey with clarity and confidence.</p>
+                </div>
+                
+                <nav class="footer-nav">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="quiz.html">Assessment</a></li>
+                        <li><a href="contact.html">Connect</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="footer-contact">
+                    <h4>Get in Touch</h4>
+                    <ul class="footer-contact-list">
+                        <li>
+                            <a href="mailto:w.banituze@alustudent.com" class="footer-contact-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                                <span>Email</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/banituze" target="_blank" rel="noopener" class="footer-contact-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                                </svg>
+                                <span>GitHub</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://linkedin.com/in/winebald" target="_blank" rel="noopener" class="footer-contact-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                                    <rect x="2" y="9" width="4" height="12"/>
+                                    <circle cx="4" cy="4" r="2"/>
+                                </svg>
+                                <span>LinkedIn</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 PathFinder by Winebald Banituze. All rights reserved.</p>
+                <p class="footer-tagline">Built for the BSE Community at ALCHE</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Link to external JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
