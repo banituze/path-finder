@@ -165,7 +165,7 @@ PathFinder runs entirely client-side. No data is stored on any server, all respo
 
 [Winebald Banituze](https://github.com/banituze)
 
-## Live Demo
+## Live Website
 
 https://banituze.github.io/path-finder
 
